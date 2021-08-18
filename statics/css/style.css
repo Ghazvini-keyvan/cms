@@ -1,0 +1,81 @@
+@font-face {
+    font-family: Vazir;
+    src: url('../../fonts/vazir.eot');
+    src: url('../..fonts/vazir.eot?#iefix') format('embedded-opentype'),
+         url('../../fonts/vazir.woff2') format('woff2'),
+         url('../../fonts/vazir.woff') format('woff'),
+         url('../../fonts/vazir.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: Vazir;
+    src: url('../../fonts/vazir-Bold.eot');
+    src: url('../../fonts/vazir-Bold.eot?#iefix') format('embedded-opentype'),
+         url('../../fonts/vazir-Bold.woff2') format('woff2'),
+         url('../../fonts/vazir-Bold.woff') format('woff'),
+         url('../../fonts/vazir-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: Vazir;
+    src: url('../../fonts/vazir-Black.eot');
+    src: url('../../fonts/vazir-Black.eot?#iefix') format('embedded-opentype'),
+         url('../../fonts/vazir-Black.woff2') format('woff2'),
+         url('../../fonts/vazir-Black.woff') format('woff'),
+         url('../../fonts/vazir-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: Vazir;
+    src: url('../../fonts/Vazir-Medium.eot');
+    src: url('../../fonts/Vazir-Medium.eot?#iefix') format('embedded-opentype'),
+         url('../../fonts/Vazir-Medium.woff2') format('woff2'),
+         url('../../fonts/Vazir-Medium.woff') format('woff'),
+         url('../../fonts/Vazir-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: Vazir;
+    src: url('../../fonts/vazir-Light.eot');
+    src: url('../../fonts/vazir-Light.eot?#iefix') format('embedded-opentype'),
+         url('../../fonts/vazir-Light.woff2') format('woff2'),
+         url('../../fonts/vazir-Light.woff') format('woff'),
+         url('../../fonts/vazir-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: Vazir;
+    src: url('../../fonts/vazir-Thin.eot');
+    src: url('../../fonts/vazir-Thin.eot?#iefix') format('embedded-opentype'),
+         url('../../fonts/vazir-Thin.woff2') format('woff2'),
+         url('../../fonts/vazir-Thin.woff') format('woff'),
+         url('../../fonts/vazir-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+body {
+    font-family: Vazir, Tahoma, Geneva, sans-serif;
+
+}
+
+p{
+    font-family: Vazir, Tahoma, Geneva, sans-serif;
+}
+
+
+#intro {
+    /* Margin to fix overlapping fixed navbar */
+    margin-top: 58px;
+  }
+  @media (max-width: 991px) {
+    #intro {
+      /* Margin to fix overlapping fixed navbar */
+      margin-top: 45px;
+    }
+  }
