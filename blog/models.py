@@ -3,6 +3,7 @@ from django.db.models.enums import Choices, TextChoices
 from django.db.models.expressions import OrderBy
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
+from django.urls import reverse
 
 
 # Create your models here.
@@ -38,7 +39,7 @@ class Post(models.Model):
         upload_to="post/")
     lead = models.CharField(verbose_name=_(
         "lead"), max_length=50, null=True, blank=True)
-    body = models.CharField(verbose_name=_("body"), max_length=50)
+    body = models.TextField(verbose_name=_("body"))
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=False)
     featured = models.BooleanField(verbose_name=_("featured"), null=True)
@@ -49,8 +50,19 @@ class Post(models.Model):
     status = models.CharField(verbose_name=_(
         "status"), max_length=15, choices=statusChoise.choices,
         default=statusChoise.DRAFT)
-    publish_time = models.DateField(verbose_name=_(
+    publish_time = models.DateTimeField(verbose_name=_(
         "publish_time"), null=True, blank=True)
+
+    def get_absolute_url(self):
+        return reverse(
+            'blog:blog-item',
+            args=[
+                self.publish_time.year,
+                self.publish_time.month,
+                self.publish_time.day,
+                self.slug,
+            ]
+        )
 
     def __str__(self):
         return self.title

@@ -24,18 +24,18 @@ def list_view(request):
 
 
 def detail_view(request, year, month, day, slug):
-    # post = Post.objects.filter(
-    #     status=Post.statusChoise.PUBLISHED,
-    #     publish_time__year=year,
-    #     publish_time__month=month,
-    #     publish_time__day=day,
-    #     slug=slug).first()
-
-    post = get_object_or_404(
+    post = Post.objects.filter(
         status=Post.statusChoise.PUBLISHED,
         publish_time__year=year,
         publish_time__month=month,
         publish_time__day=day,
-        slug=slug
-    )
+        slug=slug).first()
+
+    # post = get_object_or_404(
+    #     status=Post.statusChoise.PUBLISHED,
+    #     publish_time__year=year,
+    #     publish_time__month=month,
+    #     publish_time__day=day,
+    #     slug=slug)
+
     return render(request, "blog/detail.html", {'post': post})

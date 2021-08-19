@@ -71,7 +71,7 @@ p{
 
 #intro {
     /* Margin to fix overlapping fixed navbar */
-    margin-top: 58px;
+    margin-top: 50px;
   }
   @media (max-width: 991px) {
     #intro {
