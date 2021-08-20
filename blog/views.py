@@ -1,6 +1,10 @@
 from django.utils import timezone
+from django.utils.translation import templatize
+from django.views.generic.base import TemplateView
 from blog.models import Category, Post
 from django.shortcuts import get_object_or_404, render
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 
 
 def category_view(request):
@@ -23,6 +27,15 @@ def list_view(request):
     return render(request, "blog/list.html", {'posts': posts})
 
 
+class BlogListView(ListView):
+    template_name = "blog/list.html"
+    model = Post
+    context_object_name = "posts"
+    queryset = Post.objects.filter(
+        status=Post.statusChoise.PUBLISHED,
+        publish_time__lte=timezone.now())
+
+
 def detail_view(request, year, month, day, slug):
     post = Post.objects.filter(
         status=Post.statusChoise.PUBLISHED,
@@ -39,3 +52,17 @@ def detail_view(request, year, month, day, slug):
     #     slug=slug)
 
     return render(request, "blog/detail.html", {'post': post})
+
+
+class BlogDetailView(DetailView):
+    template_name = "blog/detail.html"
+    model = Post
+    context_object_name = "post"
+
+    def get_queryset(self):
+        return Post.objects.filter(
+            status=Post.statusChoise.PUBLISHED,
+            publish_time__year=self.kwargs["year"],
+            publish_time__month=self.kwargs["month"],
+            publish_time__day=self.kwargs["day"],
+            slug=self.kwargs["slug"])
