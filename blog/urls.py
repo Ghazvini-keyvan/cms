@@ -1,5 +1,5 @@
 from django.urls import path
-from blog.views import detail_view, list_view, category_view, BlogListView, BlogDetailView
+from blog.views import SharePost, category_view, BlogListView, BlogDetailView
 
 urlpatterns = [
     # path('', list_view),
@@ -14,5 +14,6 @@ urlpatterns = [
         BlogDetailView.as_view(),
         name="blog-item"
         ),
-    path('categories', category_view)
+    path('categories', category_view),
+    path('share/<int:pk>', SharePost.as_view(), name='share-post')
 ]

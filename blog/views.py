@@ -1,8 +1,9 @@
+from blog.forms import ShareForm
 from django.utils import timezone
 from django.utils.translation import templatize
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 from blog.models import Category, Post
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
@@ -66,3 +67,18 @@ class BlogDetailView(DetailView):
             publish_time__month=self.kwargs["month"],
             publish_time__day=self.kwargs["day"],
             slug=self.kwargs["slug"])
+
+
+class SharePost(View):
+    def get(self, request, pk):
+        form = ShareForm()
+        post = get_object_or_404(Post, pk=pk)
+        return render(request, "blog/share.html", {'form': form, 'post': post})
+
+    def post(self, request, pk):
+        post = get_object_or_404(Post, pk=pk)
+        form = ShareForm(request.POST)
+        if form.is_valid():
+            return redirect(post.get_absolute_url())
+        else:
+            return render(request, "blog/share.html", {'form': form, 'post': post})

@@ -4,6 +4,7 @@
 {{ post.title }}
 {% endblock %}
 {% block content %}
+{% load avatar_tags %}
 <!-- Jumbotron -->
     <div id="intro" class="px-5 bg-light">
       <h1 class="h2">{{ post.title }}</h1>
@@ -19,9 +20,12 @@
 
             <div class="row align-items-center mb-4">
               <div class="col-lg-6 text-center text-lg-start mb-3 m-lg-0">
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/img (23).jpg" class="rounded-5 shadow-1-strong me-2"
-                  height="35" alt="" loading="lazy" />
-                <span> منتشر شده <u>{{ post.publish_time|naturaltime }}</u> توسط</span>
+              {% avatar user 65 class="shadow-1-strong me-2 md-avatar md-avatar rounded-circle size-3" id="user_avatar" %}
+                <span> منتشر شده <u>
+                 
+                  {{ post.publish_time|naturaltime }}
+                
+                </u> توسط</span>
                 <a href="" class="text-dark">{{post.author}}</a>
               </div>
 
@@ -72,14 +76,15 @@
             <button type="button" class="btn btn-primary me-1" style="background-color: #0082ca;">
               <i class="fab fa-linkedin"></i>
             </button>
-            <button type="button" class="btn btn-primary me-1">
+            <button type="button" class="btn btn-primary me-1" 
+            onclick="location.href='{% url 'blog:share-post' post.pk %}';">
               <i class="fas fa-comments me-2"></i>Add comment
             </button>
           </section>
           <!--Section: Share buttons-->
 
           <!--Section: Author-->
-          <section class="border-bottom mb-4 pb-4">
+          <!-- <section class="border-bottom mb-4 pb-4">
             <div class="row">
               <div class="col-3">
                 <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(23).jpg"
@@ -98,7 +103,7 @@
                 </p>
               </div>
             </div>
-          </section>
+          </section> -->
           <!--Section: Author-->
 
           <!--Section: Comments-->

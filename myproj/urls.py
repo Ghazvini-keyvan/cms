@@ -22,6 +22,7 @@ from django.urls.conf import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('avatar/', include('avatar.urls')),
     path("blog/", include(("blog.urls", "blog"), namespace="blog"))
     # path('', list_view),
     # path(
@@ -29,6 +30,7 @@ urlpatterns = [
     #     detail_view,
     #     name="blog-item"),
     # path('categories', category_view)
+    
 ]
 
 if settings.DEBUG:
